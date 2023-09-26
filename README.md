@@ -5,7 +5,7 @@
 Use to auto fill google with the data getting from excel file base on XPATH
 
 # Library 
- openpyxl\n
- selenium\n
- chrome driver
+ ### openpyxl\n
+ ### selenium\n
+ ### chrome driver
  
