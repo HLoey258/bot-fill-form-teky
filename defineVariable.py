@@ -1,21 +1,31 @@
 # Reading Excel
 EXCEL_FILE = 'formb4b9.xlsx'
+TEACHER_DETAIL = "Thông tin GV"
+DETAIL = "Nội dung nhận xét"
+
 from openpyxl import load_workbook
-book = load_workbook(EXCEL_FILE) 
-sheet = book.active
+book = load_workbook(EXCEL_FILE)
+
+sheet = book[DETAIL]
+teacher_sheet = book[TEACHER_DETAIL]
 
 # Link 
 test = 'https://google.com'
 formb4b9='https://docs.google.com/forms/d/e/1FAIpQLSdhmCXo_17SP0oDj82XmEvp8RFJyofVL8J5Iqss73EZojTdXQ/viewform'
 
-# Constant - Teacher Detail
-TEACHER_NAME = sheet['G2'].value
-TEACHER_CODE = sheet['H2'].value
-# Day Report 
-DAY_REPORT = sheet['K2'].value
 
+# Constant - Teacher Detail
+TEACHER_NAME = teacher_sheet['A2'].value
+TEACHER_CODE = teacher_sheet['B2'].value
+CENTER_CODE =  teacher_sheet['D2'].value
+# Day Report 
+DAY_REPORT = teacher_sheet['F2'].value
+DAY_START = teacher_sheet['E2'].value
+
+print(DAY_REPORT)
+print(DAY_START)
 # Report code 
-LESSON = sheet['I2'].value
+LESSON = teacher_sheet['C2'].value
 def getReportCode(lesson):
     match lesson:
         case 4:
@@ -32,12 +42,15 @@ def getReportCode(lesson):
             return 3
 REPORT_CODE =  getReportCode(LESSON)
 
+print(REPORT_CODE)
+
 # Text Field 
 XPATH_TeacherName = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[1]/div/div/div[2]/div/div[1]/div/div[1]/input"
 XPATH_TeacherCode = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[2]/div/div/div[2]/div/div[1]/div/div[1]/input"
 XPATH_DROPDOWN_CENTER_CODE = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]"
-XPATH_DROPDOWN_REPORT_CODE = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[7]/div/div/div[2]/div/div[1]/div[1]/div[1]"
-XPATH_DATE_REPORT = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/input"
+XPATH_DROPDOWN_REPORT_CODE = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[8]/div/div/div[2]/div/div[1]/div[1]/div[1]"
+XPATH_DATE_START = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/input"
+XPATH_DATE_REPORT = "/html/body/div/div[2]/form/div[2]/div/div[2]/div[7]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/input"
 
 
 # Next Button 
